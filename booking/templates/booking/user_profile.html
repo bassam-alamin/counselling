@@ -1,0 +1,242 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+{% block body %}
+   {% comment %} <div class="mr-3 ml-3 mt-3">
+    <div class="row">
+        <div class="col-md-4">
+    {% if  user.groups.all.0.name == "counsellor"%}
+            <a href="{{ user.counsellor_profile_set.image.url}}">
+                <img  class="mt-1 ml-1 rounded-left rounded-right" src="{{ user.counsellor_profile_set.image.url}}" width="100%" , height="300px">
+            </a>
+
+            <table class="table table-borderless">
+
+          <tbody>
+            <tr>
+              <td class="text-info">Username</td>
+              <td>:</td>
+              <td >{{ user.username}}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Full Name</td>
+              <td>:</td>
+              <td > {{ user.first_name }} {{ user.second_name }}</td>
+            </tr>
+            <tr>
+
+              <td class="text-info">Phone Number</td>
+              <td>:</td>
+              <td>{{ user.phone_no }}</td>
+            </tr>
+          </tbody>
+        </table>
+           {% else %}
+        <img  class="mt-1 ml-1 rounded-left rounded-right" src="{% static "booking/images/avatar.png" %}" width="100%" , height="300px">
+
+              <table class="table table-borderless">
+
+          <tbody>
+            <tr >
+              <td class="text-info">Username</td>
+              <td>:</td>
+              <td >{{ user.username}}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Full Name</td>
+              <td>:</td>
+              <td > {{ user.first_name }} {{ user.second_name }}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Registration No.</td>
+              <td>:</td>
+              <td > {{ user.reg_no }}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Phone Number</td>
+              <td>:</td>
+              <td>{{ user.phone_no }}</td>
+            </tr>
+          </tbody>
+        </table>
+    {% endif %}
+    <p><a class="nav-link " href="{% url 'booking:change_password' %}">Change password</a></p>
+    <p><a class="nav-link " href="{% url 'booking:update_profile' user.id %}">Update Profile</a></p>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        </div>
+
+</div>{% endcomment %}
+    <style>
+    .ba {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.bb {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.b--black-10 {
+    border-color: rgba(0, 0, 0, .1);
+}
+
+.br3 {
+    border-radius: .5rem;
+}
+
+.br-100 {
+    border-radius: 100%;
+}
+
+.bw1 {
+    border-width: .125rem;
+}
+
+.dib {
+    display: inline-block;
+}
+
+.h3 {
+    height: 10rem;
+}
+
+.lh-copy {
+    line-height: 1.5;
+}
+
+.mw3 {
+    max-width: 4rem;
+}
+
+.mw5 {
+    max-width: 30rem;
+}
+
+.w3 {
+    width: 10rem;
+}
+
+.black-70 {
+    color: rgba(0, 0, 0, .7);
+}
+
+.bg-white {
+    background-color: #e0e0e0;
+}
+
+.pa3 {
+    padding: 1rem;
+}
+
+.mv3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tc {
+    text-align: center;
+}
+
+.f4 {
+    font-size: 1.25rem;
+}
+
+.f6 {
+    font-size: .875rem;
+}
+
+.measure {
+    max-width: 30em;
+}
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media screen and (min-width: 30em) {
+    .pa4-ns {
+        padding: 2rem;
+    }
+}
+
+
+    </style>
+
+    <article class="mw5 center  br3 pa3 pa4-ns mv3 ba b--black-10" style="background-color: #e0e0e0;">
+  <div class="tc">
+      {% if  user.groups.all.0.name == "counsellor"%}
+                <img src="{{ user.counsellor_profile_set.image.url}}" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
+      {% else %}
+           <img  class="br-100 h3 w3 dib" src="{% static "booking/images/avatar.png" %}">
+      {% endif %}
+    <h1 class="f4">{{ user.first_name }} {{ user.second_name }}</h1>
+    <hr class="mw3 bb bw1 b--black-10">
+  </div>
+    {% if  user.groups.all.0.name == "counsellor"%}
+   <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="text-info">Username</td>
+              <td>:</td>
+              <td >{{ user.username}}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Full Name</td>
+              <td>:</td>
+              <td > {{ user.first_name }} {{ user.second_name }}</td>
+            </tr>
+            <tr>
+
+              <td class="text-info">Phone Number</td>
+              <td>:</td>
+              <td>{{ user.phone_no }}</td>
+            </tr>
+          <tr>
+              <td class="text-info"><a class="" href="{% url 'booking:change_password' %}">Change password</a>
+                </td>
+              <td></td>
+              <td class="text-info"><a class="" href="{% url 'booking:update_profile' user.id %}">Update Profile</a></td>
+          </tr>
+          </tbody>
+        </table>
+         {% else %}
+
+              <table class="table table-borderless">
+
+          <tbody>
+            <tr >
+              <td class="text-info">Username</td>
+              <td>:</td>
+              <td >{{ user.username}}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Full Name</td>
+              <td>:</td>
+              <td > {{ user.first_name }} {{ user.second_name }}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Registration Number.</td>
+              <td>:</td>
+              <td > {{ user.reg_no }}</td>
+            </tr>
+            <tr>
+              <td class="text-info">Phone Number</td>
+              <td>:</td>
+              <td>{{ user.phone_no }}</td>
+            </tr>
+          <tr>
+              <td class="text-info"><a class="" href="{% url 'booking:change_password' %}">Change password</a>
+    </td>
+              <td></td>
+              <td class="text-info"><a class="" href="{% url 'booking:update_profile' user.id %}">Update Profile</a></td>
+          </tr>
+          </tbody>
+        </table>
+    {% endif %}
+</article>
+
+
+{% endblock %}

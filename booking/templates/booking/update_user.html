@@ -1,0 +1,38 @@
+ {% extends 'booking/base.html' %}
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <div class="form-group">
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+
+                        <div class="alert alert-success alert-dismissible">
+                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                    </ul>
+                {% endif %}
+
+            </div>
+            <h3>Update Your profile.</h3>
+                <form id="log"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {% for error in form.non_field.errors %}
+                            <p class="help">{{ error }}</p>
+                        {% endfor %}
+                {% include 'booking/book_form.html' %}
+
+                    <button type="submit">confirm</button>
+
+
+                </form>
+        </div>
+    </div>
+</div>
+ {% endblock %}

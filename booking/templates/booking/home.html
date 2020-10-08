@@ -1,0 +1,53 @@
+
+{% extends 'booking/base.html' %}
+{% block body %}
+    {% load static %}
+
+      <section id="intro">
+
+    <div class="intro-content">
+      <h2>Counselling Reservation<br>Start!</h2>
+        {% if not request.user.is_admin%}
+      <div>
+        <a href="{% url 'booking:book' %}" class="btn-get-started scrollto">Reserve</a>
+      </div>
+        {% endif %}
+    </div>
+
+    <div id="intro-carousel">
+      <div class="item" style="background-image:url({% static 'booking/images/egerton_gate.jpg' %});"></div>
+
+    </div>
+
+  </section><!-- #intro -->
+    <section class="remarkable-area" >
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-6">
+							<div class="section-title text-center">
+								<h2>Remarkable Works</h2>
+								<p>The Importance of Counseling. Counseling provided by trained professionals can make a profound impact on the lives of individuals, families and communities.</p>
+							</div>
+						</div>
+					</div>
+					<div class="single-remark" style="height: 100px; !important;">
+						<div class="row no-gutters">
+							<div class="col-lg-7 col-md-6">
+								<div class="bg-dark">
+                                    <img src="{% static 'booking/images/Ind-Counselling.jpg'%}" width=100%>
+                                </div>
+							</div>
+							<div class="col-lg-5 col-md-6  d-flex justify-content-center align-items-center">
+								<div class="text-center">
+									<h4 class="pt-5  ml-md-5 pl-md-5">Importance of Counselling</h4>
+									<p class="ml-md-5 pl-md-5">Guidance and counselling are important for children, and schools have a huge role in bringing out the best in children. Good conduct is coveted, but sometimes young minds need guidance to polish their personality</p>
+
+								</div>
+                            </div>
+							</div>
+						</div>
+					</div>
+    </section>
+
+ tt{% endblock %}
+

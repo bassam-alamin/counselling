@@ -1,0 +1,56 @@
+
+{% extends 'booking/base.html' %}
+{% block body %}
+    <style>
+        @media print {
+            .print_button{
+                display: none;
+            }
+        }
+    </style>
+{% if user.is_authenticated %}
+        <div class="container">
+        {% if user in q1 %}
+            <h5>{{ user.first_name }} You counselled the following students</h5>
+            <div class="row">
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                    {% if  user.groups.all.0.name == "counsellor"%}
+                        <th scope="col">Student</th>
+                         <th scope="col">Reg no</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                    {% endif %}
+                    </tr>
+                </thead>
+            {% if  user in q1%}
+                {% for b in user.counsellors.all   %}
+                        <tbody>
+                            <tr>
+                                <th scope="row"><a href="{% url 'booking:user-details' b.username_id %}">{{ b.username.first_name }}</a></th>
+                                <td>{{ b.username.reg_no }}</td>
+                                <td>{{ b.date }}</td>
+                                <td>{{ b.time }}</td>
+                            </tr>
+                        </tbody>
+                    <br>
+                {% endfor %}
+            {% endif %}
+
+            </table>
+            </div>
+            {% else %}
+            <h1 class="text-center text-danger">You are not allowed to view this page.</h1>
+            {% endif %}
+
+    <div>
+        <button class="print_button" onclick="print()">Print</button>
+    </div>
+        </div>
+{% endif %}
+
+
+
+{% endblock %}
+

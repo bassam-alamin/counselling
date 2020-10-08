@@ -1,0 +1,80 @@
+
+{% extends 'booking/base.html' %}
+{% block body %}
+{% if user.is_authenticated %}
+
+        <div class="container">
+        {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+
+                        <div class="alert alert-success alert-dismissible">
+                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    </ul>
+                {% endif %}
+            <h5>{{ user.first_name }} your bookings are as follows</h5>
+        <div class="row">
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                    {% if  user.groups.all.0.name == "counsellor"%}
+                        <th scope="col">Student</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">action</th>
+                        <th scope="col">confirmation</th>
+                    {% else %}
+                        <th scope="col">Counsellor</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">action</th>
+                    {% endif %}
+                    </tr>
+                </thead>
+            {% if  user.groups.all.0.name == "counsellor"%}
+                {% for b in user.counsellor_set.all   %}
+                    {% if b.date >= today.date %}
+                        <tbody>
+                            <tr>
+                                <th scope="row"><a href="{% url 'booking:user-details' b.username_id %}" style="color:dodgerblue ">{{ b.username.first_name }}</a></th>
+                                <td>{{ b.date }}</td>
+                                <td>{{ b.time }}</td>
+                                <td><a href="{% url 'booking:delete' b.id %}" style="color:dodgerblue ">Unbook</a></td>
+                                {% if  user.groups.all.0.name == "counsellor"%}
+                                    <td><a href="{% url 'booking:confirm' b.id %}" style="color:dodgerblue ">confirm</a></td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    {% endif %}
+                    <br>
+                {% endfor %}
+            {% else %}
+                {% for c in user.username_set.all  %}
+                    {% if c.date >= today.date %}
+                        <tbody>
+                            <tr>
+                                <th scope="row"><a href="{% url 'booking:user-details' c.counsellor1_id %}">{{ c.counsellor1.first_name }}</a></th>
+                                <td>{{ c.date }}</td>
+                                <td>{{ c.time }}</td>
+                                <td><a href="{% url 'booking:delete' c.id %}">Unbook</a></td>
+                                {% if  user.groups.all.0.name == "counsellor"%}
+                                    <td><a href="{% url 'booking:confirm' c.id %}">confirm</a></td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    {% endif %}
+                    <br>
+                {% endfor %}
+            {% endif %}
+
+            </table>
+        </div>
+        </div>
+{% endif %}
+
+{% endblock %}
+

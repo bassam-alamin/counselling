@@ -1,0 +1,19 @@
+{% extends 'booking/base.html' %}
+{% block body %}
+    <div class="row">
+    <div class="col-md-4"></div>
+        <div class="text-center col-md-4">
+            <form action="{% url 'booking:delete' book.id %}" method="post">
+                {% csrf_token %}
+
+                    <p>Are u sure u want to delete "{{ object }}'s"? booking</p>
+
+                    <div class="col-sm-12 text-center">
+                    <button class="btn btn-success btn-lg" id ="btn" type="submit">Delete</button>
+                    </div>
+
+            </form>
+        </div>
+    <div class="col-md-4"></div>
+    </div>
+{% endblock %}

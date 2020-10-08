@@ -1,0 +1,45 @@
+ {% extends 'booking/base.html' %}
+{% block body %}
+    {% load static %}
+<div class="container-fluid">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <div class="form-group">
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+
+                        <div class="alert alert-success alert-dismissible">
+                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    </ul>
+                {% endif %}
+
+            </div>
+            <h3>Add session here plz.</h3>
+                <form id="log" onsubmit="show()" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {% for error in form.non_field.errors %}
+                            <p class="help">{{ error }}</p>
+                        {% endfor %}
+                {% include 'booking/book_form.html' %}
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-success btn-lg" id ="btn" type="submit">Submit</button>
+                </div>
+
+
+                </form>
+        </div>
+    </div>
+</div>
+    <script>
+    function show() {
+            alert("Are u sure u want to book?");
+    }
+
+    </script>
+ {% endblock %}
