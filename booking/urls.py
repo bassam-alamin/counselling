@@ -5,11 +5,11 @@ app_name = 'booking'
 
 urlpatterns = [
     # /home/
-    path(r'^$', views.home.as_view(), name='home'),
+    path(r'', views.home.as_view(), name='home'),
     # /home/user/id ...to display userdetails
-    path(r'^user/(?P<pk>[0-9]+)/$', views.UserDetails.as_view(), name='user-details'),
-    path(r'^(?P<pk>[0-9]+)/(?P<slug>[\w.@+-]+)/$', views.UserProfile.as_view(), name='user-profile'),
-    path(r'^book$', views.Session.as_view(), name='book'),
+    path(r'user/(?P<pk>[0-9]+)', views.UserDetails.as_view(), name='user-details'),
+    path(r'(?P<pk>[0-9]+)/(?P<slug>[\w.@+-]+)', views.UserProfile.as_view(), name='user-profile'),
+    path(r'book', views.Session.as_view(), name='book'),
     #url to see schedule for counsellor
     # url(r'^reservations/(?P<pk>[0-9]+)/$', views.CounsellorBookings.as_view(), name='counsellor-bookings'),
 

@@ -9,9 +9,9 @@ from booking.views import home1
 
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls,name='admin'),
-    path(r'^home/',include('booking.urls')),
-    path(r'^$',home1.as_view(),name='home1'),
+    path(r'admin/', admin.site.urls,name='admin'),
+    path(r'home/',include('booking.urls')),
+    path(r'',home1.as_view(),name='home1'),
 
 
 ]
