@@ -1,4 +1,5 @@
-from django.conf.urls import url,include
+from django.conf.urls import include
+from django.urls import path
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -8,9 +9,9 @@ from booking.views import home1
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls,name='admin'),
-    url(r'^home/',include('booking.urls')),
-    url(r'^$',home1.as_view(),name='home1'),
+    path(r'^admin/', admin.site.urls,name='admin'),
+    path(r'^home/',include('booking.urls')),
+    path(r'^$',home1.as_view(),name='home1'),
 
 
 ]
